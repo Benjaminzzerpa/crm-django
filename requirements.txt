@@ -1,0 +1,12 @@
+asgiref
+Pillow
+django-crispy-forms
+django-environ
+crispy-tailwind
+django-tailwind
+gunicorn
+psycopg2-binary
+pytz
+theme
+sqlparse
+whitenois
