@@ -1,4 +1,3 @@
-from django.views import generic
 import logging
 import datetime
 from django import contrib
@@ -8,20 +7,21 @@ from django.http.response import JsonResponse
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
-# from agents.mixins import OrganisorAndLoginRequiredMixin
-# from .models import Lead, Agent, Category, FollowUp
+from django.views import generic
+from agents.mixins import OrganisorAndLoginRequiredMixin
+from .models import Lead, Agent, Category, FollowUp
 from .forms import (
-    # LeadForm, 
-    # LeadModelForm, 
+    LeadForm, 
+    LeadModelForm, 
     CustomUserCreationForm, 
-    # AssignAgentForm, 
-    # LeadCategoryUpdateForm,
-    # CategoryModelForm,
-    # FollowUpModelForm
+    AssignAgentForm, 
+    LeadCategoryUpdateForm,
+    CategoryModelForm,
+    FollowUpModelForm
 )
 
 
-# logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
 # CRUD+L - Create, Retrieve, Update and Delete + List
@@ -44,41 +44,7 @@ class LandingPageView(generic.TemplateView):
         return super().dispatch(request, *args, **kwargs)
 
 
-'''class LeadListView(LoginRequiredMixin, generic.ListView):
-    template_name = "leads/lead_list.html"
-    context_object_name = "leads"
-
-    def get_queryset(self):
-        user = self.request.user
-        # initial queryset of leads for the entire organisation
-        if user.is_organisor:
-            queryset = Lead.objects.filter(
-                organisation=user.userprofile, 
-                agent__isnull=False
-            )
-        else:
-            queryset = Lead.objects.filter(
-                organisation=user.agent.organisation, 
-                agent__isnull=False
-            )
-            # filter for the agent that is logged in
-            queryset = queryset.filter(agent__user=user)
-        return queryset
-
-    def get_context_data(self, **kwargs):
-        context = super(LeadListView, self).get_context_data(**kwargs)
-        user = self.request.user
-        if user.is_organisor:
-            queryset = Lead.objects.filter(
-                organisation=user.userprofile, 
-                agent__isnull=True
-            )
-            context.update({
-                "unassigned_leads": queryset
-            })
-        return context'''
-
-'''class DashboardView(OrganisorAndLoginRequiredMixin, generic.TemplateView):
+class DashboardView(OrganisorAndLoginRequiredMixin, generic.TemplateView):
     template_name = "dashboard.html"
 
     def get_context_data(self, **kwargs):
@@ -117,7 +83,39 @@ def landing_page(request):
     return render(request, "landing.html")
 
 
+class LeadListView(LoginRequiredMixin, generic.ListView):
+    template_name = "leads/lead_list.html"
+    context_object_name = "leads"
 
+    def get_queryset(self):
+        user = self.request.user
+        # initial queryset of leads for the entire organisation
+        if user.is_organisor:
+            queryset = Lead.objects.filter(
+                organisation=user.userprofile, 
+                agent__isnull=False
+            )
+        else:
+            queryset = Lead.objects.filter(
+                organisation=user.agent.organisation, 
+                agent__isnull=False
+            )
+            # filter for the agent that is logged in
+            queryset = queryset.filter(agent__user=user)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(LeadListView, self).get_context_data(**kwargs)
+        user = self.request.user
+        if user.is_organisor:
+            queryset = Lead.objects.filter(
+                organisation=user.userprofile, 
+                agent__isnull=True
+            )
+            context.update({
+                "unassigned_leads": queryset
+            })
+        return context
 
 
 def lead_list(request):
@@ -459,7 +457,6 @@ class FollowUpDeleteView(OrganisorAndLoginRequiredMixin, generic.DeleteView):
         return queryset
 
 
-
 # def lead_update(request, pk):
 #     lead = Lead.objects.get(id=pk)
 #     form = LeadForm()
@@ -502,7 +499,6 @@ class FollowUpDeleteView(OrganisorAndLoginRequiredMixin, generic.DeleteView):
     # }
 #     return render(request, "leads/lead_create.html", context)
 
-
 class LeadJsonView(generic.View):
 
     def get(self, request, *args, **kwargs):
@@ -515,4 +511,5 @@ class LeadJsonView(generic.View):
 
         return JsonResponse({
             "qs": qs,
-        })'''
+        })
+    
