@@ -64,7 +64,7 @@ class DashboardView(OrganisorAndLoginRequiredMixin, generic.TemplateView):
         ).count()
 
         # How many converted leads in the last 30 days
-        converted_category = Category.objects.get(name="Converted")
+        converted_category = Category.objects.get(name="Convertido")
         converted_in_past30 = Lead.objects.filter(
             organisation=user.userprofile,
             category=converted_category,
@@ -387,7 +387,7 @@ class LeadCategoryUpdateView(LoginRequiredMixin, generic.UpdateView):
     def form_valid(self, form):
         lead_before_update = self.get_object()
         instance = form.save(commit=False)
-        converted_category = Category.objects.get(name="Converted")
+        converted_category = Category.objects.get(name="Convertido")
         if form.cleaned_data["category"] == converted_category:
             # update the date at which this lead was converted
             if lead_before_update.category != converted_category:

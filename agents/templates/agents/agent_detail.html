@@ -10,14 +10,14 @@
             <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{{ agent.user.username }}</h1>
             <div class="flex mb-4">
                 <a href="{% url 'agents:agent-detail' agent.pk %}" class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">
-                    Overview
+                    Visão Geral
                 </a>
                 <a href="{% url 'agents:agent-update' agent.pk %}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
-                    Update Details
+                    Editar detalhes
                 </a>    
             </div>
             <div class="flex border-t border-gray-300 py-2">
-                <span class="text-gray-500">Full Name</span>
+                <span class="text-gray-500">Nome Completo</span>
                 <span class="ml-auto text-gray-900">{{ agent.user.first_name }} {{ agent.user.last_name }}</span>
             </div>
             <div class="flex border-t border-gray-300 py-2">

@@ -8,11 +8,11 @@
         {% csrf_token %}
         {{ form|crispy }}
         <button type='submit' class="w-full text-white bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md">
-            Signup
+            Cadastro
         </button>
     </form>
     <div class="py-5 border-t border-gray-200 mt-5">
-        <a class="hover:text-blue-500" href="{% url 'login' %}">Already have an account?</a>
+        <a class="hover:text-blue-500" href="{% url 'login' %}">Já tem uma conta ?</a>
     </div>
 </div>
 {% endblock content %}

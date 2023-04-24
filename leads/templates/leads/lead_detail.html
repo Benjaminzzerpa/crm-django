@@ -19,17 +19,17 @@
                 </div>
                 <div class="flex mb-4">
                     <a href="{% url 'leads:lead-detail' lead.pk %}" class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">
-                        Overview
+                        Visão geral
                     </a>
                     <a href="{% url 'leads:lead-category-update' lead.pk %}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
-                        Category
+                        Categoria
                     </a>
                     <a href="{% url 'leads:lead-update' lead.pk %}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
-                        Update Details
+                        Editar detalhes
                     </a>    
                 </div>
                 <div class="flex border-t border-gray-300 py-2">
-                    <span class="text-gray-500">Age</span>
+                    <span class="text-gray-500">Idade</span>
                     <span class="ml-auto text-gray-900">{{ lead.age }}</span>
                 </div>
                 <div class="flex border-t border-gray-300 py-2">
@@ -37,12 +37,12 @@
                     <span class="ml-auto text-gray-900">{{ lead.email }}</span>
                 </div>
                 <div class="flex border-t border-b mb-6 border-gray-300 py-2">
-                    <span class="text-gray-500">Phone Number</span>
+                    <span class="text-gray-500">Celular</span>
                     <span class="ml-auto text-gray-900">{{ lead.phone_number }}</span>
                 </div>
             </div>
 
-        <a href="{% url 'leads:lead-followup-create' lead.pk %}" class="text-white bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md">Add a followup</a>
+        <a href="{% url 'leads:lead-followup-create' lead.pk %}" class="text-white bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md">Adicionar acompanhamento</a>
 
         </div>
 
@@ -50,7 +50,7 @@
             <div class="mt-5 shadow px-4 sm:px-6">
                 <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
                     <dt class="text-sm font-medium text-gray-500">
-                    Notes (<a href="{% url 'leads:lead-followup-update' followup.pk %}" class="text-blue-500 hover:text-blue-700">update</a>)
+                    Notes (<a href="{% url 'leads:lead-followup-update' followup.pk %}" class="text-blue-500 hover:text-blue-700">Editar</a>)
                     </dt>
                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     {{ followup.notes }}
@@ -59,7 +59,7 @@
                 {% if followup.file %}
                     <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
                         <dt class="text-sm font-medium text-gray-500">
-                        Attachments
+                        Anexos
                         </dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                         <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
