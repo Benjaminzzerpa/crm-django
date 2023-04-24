@@ -13,12 +13,13 @@ Este é um repositório contendo um projeto de CRM (Customer Relationship Manage
 
 A seguir, algumas imagens mostrando como o projeto funciona:
 
-![Imagem 1]()
+![Imagem 1](RdImages/landing.png)
 
-![Imagem 2]()
+![Imagem 2](RdImages/dashboard.png)
 
-![Imagem 3]()
+![Imagem 3](RdImages/Leads_list.png)
 
+![Imagem 3](RdImages/Leads_detail.png)
 ## Instalação
 
 Para instalar o projeto, siga os seguintes passos:
